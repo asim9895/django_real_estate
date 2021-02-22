@@ -42,6 +42,7 @@ def register(request):
                    user = User.objects.create(username=username , first_name=first_name , last_name=last_name,
                    email=email,password=password)
 
+                   user.set_password(password)
                    user.save()
                    messages.success(request, 'You are now registered and can log in')
                    return redirect('login')               
