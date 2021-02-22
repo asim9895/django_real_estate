@@ -1,4 +1,14 @@
-{% extends '../base.html' %} {%block content%} {% load static %} {% load humanize %}
+{% extends '../base.html' %}
+
+{% block title %}
+
+| Home
+
+{%endblock%}
+
+{%block content%}
+
+{% load static %} {% load humanize %}
 <section
   id="showcase"
   style="
@@ -91,6 +101,7 @@
   </div>
 </section>
 
+ {% include 'partials/_alerts.html'%}
 <!-- Listings -->
 <section id="listings" class="py-5">
   <div class="container">
