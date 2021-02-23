@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages ,  auth
 from django.contrib.auth.models import User
+from comments.models import Comment
 
 # Create your views here.
 def login(request):
@@ -55,7 +56,12 @@ def register(request):
 
 def dashboard(request):
     if auth.user_logged_in:
-        return render(request , 'accounts/dashboard.html')
+        user_comments = Comment.objects.order_by('-comment_date').filter(user_id=request.user.id)
+
+        context = {
+            'comments': user_comments
+        }
+        return render(request , 'accounts/dashboard.html', context)
     else:
         return redirect('index')
     
